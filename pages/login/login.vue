@@ -1,0 +1,198 @@
+<template>
+  <view>
+    <!-- #ifdef MP-WEIXIN -->
+    <view v-if="isCanUser">
+      <view>
+        <view class='header'>
+          <image src='/static/images/user/person-header.jpg'></image>
+        </view>
+        <view class='content'>
+          <view>申请获取以下权限</view>
+          <text>获得你的公开信息(昵称，头像、地区等)</text>
+        </view>
+        <!--授权登录未过期时不显示授权按钮-->
+        <view :hidden="isOverdue">
+          <button class='bottom' type='primary' open-type="getUserInfo"
+                  withCredentials="true" lang="zh_CN"
+                  @getuserinfo="wxGetUserInfo">
+            授权登录
+          </button>
+        </view>
+      </view>
+    </view>
+    <!-- #endif -->
+  </view>
+</template>
+
+<script type="text/ecmascript-6">
+  import {getOpenId, getUserId,device} from '../../common/api/config';
+
+  export default {
+    data() {
+      return {
+        isOverdue: uni.getStorageSync('isOverdue') || false, // 授权登录按钮显隐状态
+        isCanUser: uni.getStorageSync('isCanUser') || true, //默认为true
+      };
+    },
+    methods: {
+      // 第一授权获取用户信息,按钮触发
+      wxGetUserInfo() {
+        const _this = this;
+        uni.getUserInfo({
+          provider: 'weixin',
+          success: function (infoRes) {
+            uni.setStorageSync('isOverdue', true);
+            console.log('登录', infoRes);
+            // 获取userId
+            const userInfo = infoRes.userInfo;
+            const userIdData = Object.assign({}, device, {
+              openid: '1523665656',
+              nickname: userInfo.nickName, //昵称
+              sex: userInfo.gender, //0为未知 1为男性，2为女性
+              province: userInfo.province, //省份
+              city: userInfo.city,
+              country: userInfo.country,
+              headimgurl: userInfo.avatarUrl
+            });
+            getUserId(userIdData).then(res => {
+              // console.log('userId', res);
+              try {
+                uni.setStorageSync('userId', res.data.userId);
+              } catch (e) {
+              }
+            }).catch(err => {
+              console.log(`https://segmentfault.com/search?q=${err}`);
+            });
+            try {
+              uni.setStorageSync('isCanUser', false); //记录是否第一次授权  false:表示不是第一次授权
+              uni.redirectTo({
+                url: '../../pages/index/index',
+                success() {
+
+                }
+              });
+            } catch (e) {
+            }
+          },
+          fail(res) {
+          }
+        });
+      },
+      //登录
+      login() {
+        const _this = this;
+        uni.showLoading({
+          title: '登录中...',
+          mask: true
+        });
+        // 1.wx获取登录用户code
+        uni.login({
+          provider: 'weixin',
+          success: function (loginRes) {
+            let code = loginRes.code;
+            const entTime = uni.getStorageSync('userInfo');
+            if (uni.getStorageSync('isCanUser') === false && JSON.parse(entTime).entTime > new Date().getTime()) {
+              // console.log('登录未过期');
+              //非第一次授权获取用户信息
+              uni.getUserInfo({
+                provider: 'weixin',
+                success: function (infoRes) {
+                  uni.redirectTo({
+                    url: '../../pages/index/index',
+                    animationType: 'none',
+                    success() {
+
+                    }
+                  });
+                }
+              });
+            } else {
+              console.log('登录已过期');
+              _this.isOverdue = false;
+              uni.setStorageSync('isCanUser', '');
+              uni.showToast({
+                title: '登录已过期',
+                icon: 'loading',
+                mask: true,
+                duration: 2000
+              });
+              setTimeout(() => {
+                const codeData = {
+                  code: code,
+                  sessionId: ''
+                }
+                getOpenId(codeData).then(res => {
+                  const userInfoData = JSON.stringify(res.data.data);
+                  try {
+                    // 缓存后端返回的OpenId、登录过期时间戳等信息
+                    uni.setStorageSync('userInfo', userInfoData);
+                    uni.hideLoading();
+                  } catch (e) {
+                  }
+                }).catch(err => {
+                  console.log(`https://segmentfault.com/search?q=${err}`);
+                });
+              }, 500);
+            }
+          },
+        });
+      }
+    },
+    components: {
+      
+    },
+    onLoad() {
+      // 隐藏左上角返回首页按钮
+      uni.hideHomeButton();
+      this.login();
+    },
+    onShow() {
+      // 隐藏左上角返回首页按钮
+      uni.hideHomeButton();
+    }
+  }
+</script>
+
+<style scoped lang="scss">
+  .header {
+    margin: 90rpx 0 90rpx 50rpx;
+    border-bottom: 1px solid #ccc;
+    text-align: center;
+    width: 650rpx;
+    height: 300rpx;
+    line-height: 450rpx;
+  }
+  .header image {
+    width: 320rpx;
+    height: 156rpx;
+  }
+  .content {
+    margin-left: 50rpx;
+    margin-bottom: 90rpx;
+  }
+  .content text {
+    display: block;
+    color: #9d9d9d;
+    margin-top: 40rpx;
+    font-size: 24rpx;
+  }
+  .bottom {
+    border-radius: 80rpx;
+    margin: 70rpx 50rpx;
+    font-size: 36rpx;
+  }
+  .loading-local-wrap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    width: 100%;
+    height: 100%
+  }
+  .loading-box {
+    border-radius: 10rpx;
+    width: 180rpx;
+    height: 190rpx;
+    background: rgba(0, 0, 0, 0.4);
+  }
+</style>
