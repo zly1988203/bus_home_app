@@ -43,8 +43,7 @@ page {
 .user .user-wrap .user-bg {
   width: 100%;
   height: 50vw;
-  -webkit-border-radius: 0 0 20% 20%;
-          border-radius: 0 0 20% 20%;
+  border-radius: 0 0 20% 20%;
   background-size: cover;
 }
 .user .user-wrap .setting {
@@ -65,8 +64,7 @@ page {
 .user .user-wrap .info .avatar {
   width: 150rpx;
   height: 150rpx;
-  -webkit-border-radius: 50%;
-          border-radius: 50%;
+  border-radius: 50%;
 }
 .user .user-wrap .info .name-phone {
   color: #fff;
@@ -88,8 +86,7 @@ page {
   margin-top: 20rpx;
 }
 .user .com-item .com-wrap {
-  -webkit-border-radius: 25rpx;
-          border-radius: 25rpx;
+  border-radius: 25rpx;
   overflow: hidden;
 }
 .user .cell {

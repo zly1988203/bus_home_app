@@ -25,11 +25,9 @@
 /* 透明度 */
 /* 文章场景相关 */
 .container .order-item.data-v-57280228 {
-  -webkit-border-radius: 20rpx;
-          border-radius: 20rpx;
+  border-radius: 20rpx;
   overflow: hidden;
   position: relative;
-  -webkit-box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.1);
   box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.1);
   margin: 15rpx 20rpx;
 }
@@ -117,8 +115,7 @@
   background: #ffffff;
   color: #000000;
   font-size: 28rpx;
-  -webkit-border-radius: 30rpx;
-          border-radius: 30rpx;
+  border-radius: 30rpx;
   text-align: center;
   border: 1rpx solid #999999;
 }
@@ -132,8 +129,7 @@
   background: #4CD964;
   color: #FFFFFF;
   font-size: 32rpx;
-  -webkit-border-radius: 40rpx;
-          border-radius: 40rpx;
+  border-radius: 40rpx;
   text-align: center;
   margin-left: 65%;
 }
