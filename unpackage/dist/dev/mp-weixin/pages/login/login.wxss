@@ -1,3 +1,10 @@
+
+page {
+	height: auto;
+	min-height: 100%;
+	background-color: #f5f6f8;
+}
+
 @charset "UTF-8";
 /**
  * 这里是uni-app内置的常用样式变量
@@ -24,47 +31,192 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.header.data-v-b237504c {
-  margin: 90rpx 0 90rpx 50rpx;
-  border-bottom: 1px solid #ccc;
+.page_login.data-v-b237504c {
+  padding: 10px;
+}
+.head.data-v-b237504c {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+.head .head_bg.data-v-b237504c {
+  width: 100px;
+  height: 100px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+  font-weight: bolder;
+  font-size: 80rpx;
+}
+.login_form.data-v-b237504c {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  margin: 20px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+}
+.login_form .line.data-v-b237504c {
+  width: 100%;
+  height: 1px;
+  background-color: #d6d6d6;
+}
+.login_form .input.data-v-b237504c {
+  width: 100%;
+  max-height: 45px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  padding: 3px;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+}
+.login_form .input .img.data-v-b237504c {
+  min-width: 40px;
+  min-height: 40px;
+  margin: 5px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+}
+.login_form .input .img_del.data-v-b237504c {
+  width: 21px;
+  height: 21px;
+}
+.login_form .input .img_pwd_switch.data-v-b237504c {
+  width: 28px;
+  height: 12px;
+}
+.login_form .input input.data-v-b237504c {
+  outline: none;
+  height: 30px;
+  width: 100%;
+}
+.login_form .input input.data-v-b237504c:focus {
+  outline: none;
+}
+.error-msg.data-v-b237504c {
   text-align: center;
-  width: 650rpx;
-  height: 300rpx;
-  line-height: 450rpx;
-}
-.header image.data-v-b237504c {
-  width: 320rpx;
-  height: 156rpx;
-}
-.content.data-v-b237504c {
-  margin-left: 50rpx;
-  margin-bottom: 90rpx;
-}
-.content text.data-v-b237504c {
-  display: block;
-  color: #9d9d9d;
-  margin-top: 40rpx;
+  color: red;
   font-size: 24rpx;
 }
-.bottom.data-v-b237504c {
-  -webkit-border-radius: 80rpx;
-          border-radius: 80rpx;
-  margin: 70rpx 50rpx;
-  font-size: 36rpx;
+.submit.data-v-b237504c {
+  margin-top: 30rpx;
+  margin-left: 20rpx;
+  margin-right: 20rpx;
+  color: white;
+  -webkit-border-radius: 40rpx;
+          border-radius: 40rpx;
+  background-color: #FFD101;
+  -webkit-tap-highlight-color: #FFD101;
 }
-.loading-local-wrap.data-v-b237504c {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 999;
-  width: 100%;
-  height: 100%;
+.submit.data-v-b237504c:active {
+  color: #B6B6B6;
+  background-color: #FFD101;
 }
-.loading-box.data-v-b237504c {
-  -webkit-border-radius: 10rpx;
-          border-radius: 10rpx;
-  width: 180rpx;
-  height: 190rpx;
-  background: rgba(0, 0, 0, 0.4);
+.opts.data-v-b237504c {
+  margin-top: 5px;
+  margin-left: 25px;
+  margin-right: 25px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
+}
+.opts .text.data-v-b237504c {
+  font-size: 13px;
+  color: #B6B6B6;
+}
+.quick_login_line.data-v-b237504c {
+  margin-top: 40px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+}
+.quick_login_line .line.data-v-b237504c {
+  height: 1px;
+  width: 38%;
+  background-color: #d3d3d5;
+}
+.quick_login_line .text.data-v-b237504c {
+  font-size: 13px;
+  color: #c8c8c8;
+  margin: 2px;
+}
+.quick_login_list.data-v-b237504c {
+  margin-top: 30px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+}
+.quick_login_list .item.data-v-b237504c {
+  width: 50px;
+  height: 50px;
+  margin: 20px;
 }
 

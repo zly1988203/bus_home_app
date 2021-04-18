@@ -1,20 +1,11 @@
-export const baseUrl = 'https://127.0.0.1:8080/mock/'
-export const device = '12545666'
+let url_config = ""
 
-export function getOpenId(){
-	let data = {
-		
-	}
-	return data;
+if(process.env.NODE_ENV === 'development'){
+    // 开发环境
+    url_config = 'http://47.99.191.92:8080'
+}else{
+    // 生产环境
+    url_config = 'http://47.99.191.92:8080'
 }
 
-export function getUserId(userIdData){
-	return new Promise((resolve,reject) => {
-		resolve({
-			'data' : {
-				userId:'254545'
-			}
-		})
-
-	})
-}
+export default url_config

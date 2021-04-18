@@ -2,12 +2,12 @@
 	<view class="user">
 		<!-- 头部 -->
 		<view class="user-wrap">
-			<image class="user-bg" mode="aspectFill" :src="userInfo.userBg"></image>
+			<image class="user-bg" mode="aspectFill" :src="driverInfo.userBg"></image>
 			<view class="info">
-				<image class="avatar" mode="aspectFill" :src="userInfo.headPicUrl"></image>
+				<image class="avatar" mode="aspectFill" :src="driverInfo.headPicUrl"></image>
 				<view class="name-phone">
-					<view class="nickname">{{ userInfo.nickName }}</view>
-					<view class="phone">{{ userInfo.phone }}</view>
+					<view class="nickname">{{ driverInfo.nickName }}</view>
+					<view class="phone">{{ driverInfo.phone }}</view>
 				</view>
 			</view>
 			<view class="setting iconfont icon31shezhi"></view>
@@ -16,26 +16,46 @@
 		<!-- 用户功能 -->
 		<view class="com-item">
 			<view class="com-wrap">
-				<view class="cell" v-for="(item, index) in userList" :key="index">
+				
+				<view class="cell">
 					<view class="cell-left">
-						<image class="cell-icon" :src="item.icon" mode="aspectFill"></image>
-						<view class="cell-text">{{ item.title }}</view>
+						<image class="cell-icon" src="/static/images/user/icon-foot.png" mode="aspectFill"></image>
+						<view class="cell-text">我的账单</view>
 					</view>
 					<view class="iconfont iconmore1"></view>
 				</view>
+				
+				<view class="cell">
+					<view class="cell-left">
+						<image class="cell-icon" src="/static/images/user/icon-foot.png" mode="aspectFill"></image>
+						<view class="cell-text">全部订单</view>
+					</view>
+					<view class="iconfont iconmore1"></view>
+				</view>
+				
+				<view class="cell">
+					<view class="cell-left">
+						<image class="cell-icon" src="/static/images/user/icon-collect.png" mode="aspectFill"></image>
+						<view class="cell-text">我的转单</view>
+					</view>
+					<view class="iconfont iconmore1"></view>
+				</view>
+				
+
+				
 			</view>
 		</view>
 
 		<!-- 用户服务 -->
 		<view class="com-item">
 			<view class="com-wrap">
-				<view class="cell" v-for="(item, index) in serverList" :key="index">
+<!-- 				<view class="cell" v-for="(item, index) in serverList" :key="index">
 					<view class="cell-left">
 						<image class="cell-icon" :src="item.icon" mode="aspectFill"></image>
 						<view class="cell-text">{{ item.title }}</view>
 					</view>
 					<view class="iconfont iconmore1"></view>
-				</view>
+				</view> -->
 			</view>
 		</view>
 	</view>
@@ -49,30 +69,21 @@ export default {
 	},
 	data() {
 		return {
-			userInfo: {
-				headPicUrl: '/static/images/user/person-header.jpg',
-				nickName: '老狗咯',
-				phone:'18620256487',
-				userBg:'/static/images/user/user-bg2.png'
+			 driverInfo: {
+			            "driverId": "DC0001",
+						userBg:'/static/images/user/user-bg2.png',
+			            "avatar": '/static/images/user/person-header.jpg',
+			            "driverAccount": "test001",
+			            "driverName": '老狗咯',
+			            "cardCode": null,
+			            "status": null,
+			            "phoneNumber": 18688765432,
+			            "gender": '男',
+			            "birthday": '2121-04-10',
+			            "hometown": '湖南',
+			            "companyId": null,
 			},
 			currentIndex: 0,
-			userList: [
-				// {
-				// 	title: '收货地址',
-				// 	icon: '/static/images/user/icon-address.png',
-				// 	path: 'address-list'
-				// },
-				{
-					title: '我的转单',	
-					icon: '/static/images/user/icon-collect.png',
-					path: 'collect-list'
-				},
-				{
-					title: '我的账单',
-					icon: '/static/images/user/icon-foot.png',
-					path: 'browse-list'
-				}
-			],
 			serverList: [
 				{
 					title: '客服中心',

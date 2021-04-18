@@ -6,7 +6,6 @@
 				<view class="start">
 					<image src="/static/images/icon-start.png" mode="aspectFill"></image>
 					<view>	平江</view>
-
 					</view>
 					<view class="arrow">
 						<image src="/static/images/icon-arrow.png" mode="aspectFill"></image>
@@ -63,13 +62,37 @@
 				childName:''
 			}
 		},
+		components:{
+		},
+		created() {
+			
+		},
+		mounted() {
+			this.loadOderList()
+		},
 		methods: {
+			loadOderList(){
+				let userInfo = {
+					driverId: 'DC0001',
+					}
+				
+				this.$api.orderList(userInfo).then(res => {
+				   // 获得数据 
+				   console.log("login",res) 
+				   if(res.code == 200){
+						let orderHallList = res.data.orderHallList
+						console.log("loadOderList",orderHallList)
+				   }
+				   
+				}).catch(res => {
+					this.errorMsg = '登录失败，帐户或密码错误'
+				　　// 失败进行的操作
+				})
+			},
 			childStr(data){
 				this.childName = data.name;
 			}
 		},
-		components:{
-		}
 	}
 </script>
 
@@ -151,11 +174,11 @@
 							height: 60rpx;
 							line-height: 60rpx;
 							background: #ffffff;
-							color: #000000;
+							color: #0190FF;
 							font-size: 28rpx;
 							border-radius: 30rpx;
 							text-align: center;
-							border: 1rpx solid #999999;
+							border: 1rpx solid #0190FF;
 						}
 					}
 				}
@@ -167,7 +190,7 @@
 					width: 220rpx;
 					height: 70rpx;
 					line-height: 70rpx;
-					background: #4CD964;
+					background: #FFD101;
 					color: #FFFFFF;
 					font-size: 32rpx;
 					border-radius: 40rpx;

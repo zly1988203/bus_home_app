@@ -1,65 +1,53 @@
 {
-  "description": "项目配置文件。",
-  "packOptions": {
-    "ignore": []
-  },
-  "setting": {
-    "urlCheck": true,
-    "es6": true,
-    "enhance": false,
-    "postcss": true,
-    "preloadBackgroundData": false,
-    "minified": true,
-    "newFeature": false,
-    "coverView": true,
-    "nodeModules": false,
-    "autoAudits": false,
-    "showShadowRootInWxmlPanel": true,
-    "scopeDataCheck": false,
-    "uglifyFileName": false,
-    "checkInvalidKey": true,
-    "checkSiteMap": true,
-    "uploadWithSourceMap": true,
-    "compileHotReLoad": false,
-    "babelSetting": {
-      "ignore": [],
-      "disablePlugins": [],
-      "outputPath": ""
+    "description": "项目配置文件。",
+    "packOptions": {
+        "ignore": []
     },
-    "useIsolateContext": true,
-    "useCompilerModule": true,
-    "userConfirmedUseCompilerModuleSwitch": false,
-    "packNpmManually": false,
-    "packNpmRelationList": [],
-    "minifyWXSS": true,
-    "useMultiFrameRuntime": false,
-    "useApiHook": true
-  },
-  "compileType": "miniprogram",
-  "libVersion": "",
-  "appid": "touristappid",
-  "projectname": "bus_home_app",
-  "simulatorType": "wechat",
-  "simulatorPluginLibVersion": {},
-  "condition": {
-    "search": {
-      "list": []
+    "setting": {
+        "urlCheck": true,
+        "postcss": true
     },
-    "conversation": {
-      "list": []
-    },
-    "game": {
-      "list": []
-    },
-    "miniprogram": {
-      "list": [
-        {
-          "name": "userCenter",
-          "query": "",
-          "id": 0,
-          "pathName": "pages/userCenter/userCenter"
+    "compileType": "miniprogram",
+    "libVersion": "",
+    "appid": "touristappid",
+    "projectname": "bus_home_app",
+    "condition": {
+        "search": {
+            "list": []
+        },
+        "conversation": {
+            "list": []
+        },
+        "game": {
+            "list": []
+        },
+        "miniprogram": {
+            "list": [
+                {
+                    "name": "userCenter",
+                    "query": "",
+                    "id": 0,
+                    "pathName": "pages/userCenter/userCenter"
+                },
+                {
+                    "name": "login",
+                    "query": "",
+                    "id": 1,
+                    "pathName": "pages/login/login"
+                },
+                {
+                    "name": "find-pwd",
+                    "query": "",
+                    "id": 2,
+                    "pathName": "pages/find-pwd/find-pwd"
+                },
+                {
+                    "name": "index",
+                    "query": "",
+                    "id": 3,
+                    "pathName": "pages/index/index"
+                }
+            ]
         }
-      ]
     }
-  }
 }
