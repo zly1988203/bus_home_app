@@ -65,7 +65,7 @@
   color: #09BB07;
 }
 .container .order-item .header .address .arrow image.data-v-57280228 {
-  width: 100rpx;
+  width: 80rpx;
   height: 100%;
 }
 .container .order-item .header .address .end.data-v-57280228 {
@@ -81,6 +81,12 @@
   width: 50rpx;
   height: 50rpx;
   color: #F56C6C;
+}
+.container .order-item .header .address .content.data-v-57280228 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 180rpx;
 }
 .container .order-item .header .time.data-v-57280228 {
   color: #DD524D;

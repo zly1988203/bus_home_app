@@ -11,10 +11,10 @@ api.login = params => request.globalRequest(`${PORT}/sdg/driver/index/signIn`, '
 api.receiveOrder = params => request.globalRequest(`${PORT}/sdg/driver/index/receiveOrder`, 'POST', params, 2)
 
 api.getReservationOrderList = params => request.globalRequest(`${PORT}/sdg/driver/order/getReservationOrderList`, 'POST', params, 2)
-
+api.getOrderReceivedList = params => request.globalRequest(`${PORT}/sdg/driver/order/getOrderReceivedList`, 'POST', params, 2)
+api.getTodayItineraryList = params => request.globalRequest(`${PORT}/sdg/driver/order/getTodayItineraryList`, 'POST', params, 2)
+api.cancelOrder = params => request.globalRequest(`${PORT}/sdg/driver/order/cancelOrder`, 'POST', params, 2)
 api.transferOrder = params => request.globalRequest(`${PORT}/sdg/driver/order/transferOrder`, 'POST', params, 2)
-
-
 api.transferList = params => request.globalRequest(`${PORT}/sdg/user/transferList`, 'POST', params, 1)
 
 api.journeyList = params => request.globalRequest(`${PORT}/sdg/user/journeyList`, 'POST', params, 1)

@@ -1,65 +1,69 @@
 <template>
 <view class="container">
-	<view class="order-item">
+	<view class="order-item" v-for="(order,index) in orderHallList">
 		<view class="header">
 			<view class="address">
 				<view class="start">
 					<image src="/static/images/icon-start.png" mode="aspectFill"></image>
-					<view>	平江</view>
+					<view class="content">	{{order.orderStartPoint}}</view>
 					</view>
 					<view class="arrow">
 						<image src="/static/images/icon-arrow.png" mode="aspectFill"></image>
 					</view>
 				<view class="end">
 					<image src="/static/images/icon-end.png" mode="aspectFill"></image>
-					<view> 南江片区</view>
+					<view class="content"> {{order.orderEndPoint}}</view>
 					</view>
-			</view>
-			<view class="time">
-				已过5分钟
 			</view>
 		</view>
 		<view class="body">
 			<view class="b-row">
 				<view class="b-col-title">乘客：</view>
-				<view class="b-col-val">韩梅梅</view>
+				<view class="b-col-val">{{order.userName}}</view>
 			</view>
 			<view class="b-row">
-				<view class="b-col-title">电话：</view>
-				<view class="b-col-val">18520365428</view>
 				<view class="b-col-other">
 					<view class="btn-tel">呼叫乘客</view>
 				</view>
 			</view>
 			<view class="b-row">
 				<view class="b-col-title">人数：</view>
-				<view class="b-col-val">2人</view>
+				<view class="b-col-val">{{order.numberOfPassengers}}人</view>
 			</view>
 			<view class="b-row">
 				<view class="b-col-title">上车地点：</view>
-				<view class="b-col-val">长沙高新区人民路87号</view>
+				<view class="b-col-val">{{order.pickUpLocation}}</view>
 			</view>
 			<view class="b-row">
 				<view class="b-col-title">上车时间：</view>
-				<view class="b-col-val">2020-10-14 14:30</view>
+				<view class="b-col-val">{{order.appointmentTime | formatDate}}</view>
+			</view>
+			<view class="b-row">
+				<view class="b-col-title">目的地：</view>
+				<view class="b-col-val">{{order.pickDownLocation}}</view>
+			</view>
+			<view class="b-row">
+				<view class="b-col-title">备注：</view>
+				<view class="b-col-val">{{order.pickDownLocation}}</view>
 			</view>
 		</view>
 		<view class="footer">
-			<view class="btn-go">立即接单</view>
+			<view class="btn-go" @click="accOrder(order)">立即接单</view>
 		</view>
 	</view>
-
 </view>
 
 </template>
 
 <script>
+	import {formatDate} from '@/common/api/formatDate.js'
 	export default {
 		data() {
 			return {
 				href: 'https://uniapp.dcloud.io/component/README?id=uniui',
 				name:'约车',
-				childName:''
+				childName:'',
+				orderHallList:[]
 			}
 		},
 		components:{
@@ -67,25 +71,59 @@
 		created() {
 			
 		},
+		filters: {
+		    formatDate(time) {
+		    var date = new Date(time);
+		    return formatDate(date, 'yyyy-MM-dd mm:ss');
+		   }
+		},
 		mounted() {
 			this.loadOderList()
 		},
 		methods: {
 			loadOderList(){
 				let userInfo = {
-					driverId: 'DC0001',
+					driverId: 'DC0002',
 					}
 				
 				this.$api.orderList(userInfo).then(res => {
 				   // 获得数据 
 				   console.log("login",res) 
 				   if(res.code == 200){
-						let orderHallList = res.data.orderHallList
-						console.log("loadOderList",orderHallList)
+						this.orderHallList = res.data.orderHallList
+						console.log("loadOderList",this.orderHallList)
+				   }else{
+						uni.showToast({
+							title:'订单获取失败'
+						})
 				   }
-				   
 				}).catch(res => {
 					this.errorMsg = '登录失败，帐户或密码错误'
+				　　// 失败进行的操作
+				})
+			},
+			accOrder(order){
+				let param = {
+					driverId: 'DC0001',
+					orderId:order.orderId
+				}
+				this.$api.receiveOrder(param).then(res =>{
+					console.log("login",res)
+					if(res.code == 200){
+							uni.showToast({
+								title:'接单成功'
+							})
+							uni.switchTab({
+								url:'/pages/order/order'
+							})
+						
+					}else{
+							uni.showToast({
+								title:'接单失败'
+							})
+					}
+				}).catch(res => {
+					this.errorMsg = '接单失败'
 				　　// 失败进行的操作
 				})
 			},
@@ -130,7 +168,7 @@
 					}
 					.arrow{
 						image{
-							width: 100rpx;
+							width: 80rpx;
 							height: 100%;
 						}
 					}
@@ -145,6 +183,12 @@
 							height: 50rpx;
 							color:#F56C6C;
 						}
+					}
+					.content{
+						overflow: hidden;
+						text-overflow:ellipsis;
+						white-space: nowrap;
+						width:180rpx ;
 					}
 				}
 				.time{

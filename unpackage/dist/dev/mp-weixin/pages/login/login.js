@@ -230,20 +230,22 @@ var _default =
 
 
       this.$api.login(userInfo).then(function (res) {
+        debugger;
         // 获得数据 
         console.log("login", res);
         if (res.code == 200) {
           var driverInfo = res.data.driverInfo;
           console.log("driverInfo", driverInfo);
           uni.setStorageSync('driverInfo', JSON.stringify(driverInfo));
-
           uni.switchTab({
             url: '/pages/index/index' });
 
+        } else {
+          _this.errorMsg = res.msg;
         }
-
       }).catch(function (res) {
-        _this.errorMsg = '登录失败，帐户或密码错误';
+
+        _this.errorMsg = '登录错误 请稍后重试...';
         // 失败进行的操作
       });
 

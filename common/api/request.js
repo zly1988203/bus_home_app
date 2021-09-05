@@ -39,11 +39,7 @@ request.globalRequest = (url, method, data, power) => {
 		dataType: 'json',
 		header: headers
 	}).then(res => {
-		if (res[1].data.code == 200) {
-			return res[1].data
-		} else {
-			throw res[1].data
-		}
+		return res[1].data
 	}).catch(parmas => {
 		switch (parmas.code) {
 			case 401:

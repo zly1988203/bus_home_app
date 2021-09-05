@@ -10,7 +10,7 @@
 					<view class="phone">{{ driverInfo.phone }}</view>
 				</view>
 			</view>
-			<view class="setting iconfont icon31shezhi"></view>
+			<view class="setting iconfont icon31shezhi" @click="userInfo"></view>
 		</view>
 
 		<!-- 用户功能 -->
@@ -47,17 +47,6 @@
 		</view>
 
 		<!-- 用户服务 -->
-		<view class="com-item">
-			<view class="com-wrap">
-<!-- 				<view class="cell" v-for="(item, index) in serverList" :key="index">
-					<view class="cell-left">
-						<image class="cell-icon" :src="item.icon" mode="aspectFill"></image>
-						<view class="cell-text">{{ item.title }}</view>
-					</view>
-					<view class="iconfont iconmore1"></view>
-				</view> -->
-			</view>
-		</view>
 	</view>
 </template>
 
@@ -102,8 +91,20 @@ export default {
 				}
 			]
 		};
+	},
+	mounted() {
+		this.driverInfo = sessionStorage.getItem('driverInfo')
+	},
+	methods:{
+		userInfo(){
+			this.uni.navigateTo({
+				url: '/pages/userInfo/userInfo',
+			});
+		}
+		
 	}
-};
+
+}
 </script>
 
 <style lang="scss">

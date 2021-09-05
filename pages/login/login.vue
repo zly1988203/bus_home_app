@@ -30,7 +30,7 @@
 			<view class="line" />
 		</view>
 		<!-- 登录提交 -->
-		<view class="error-msg">登录失败</view>
+		<view class="error-msg">{{errorMsg}}</view>
 		<button class="submit" type="primary" @tap="login">登录</button>
 		<view class="opts">
 			<!-- <text @tap="goReg" class="text">立即注册</text> -->
@@ -85,20 +85,22 @@
 					}
 				
 				this.$api.login(userInfo).then(res => {
+					debugger
 				   // 获得数据 
 				   console.log("login",res) 
 				   if(res.code == 200){
 					   let driverInfo = res.data.driverInfo
 					   console.log("driverInfo",driverInfo) 
 					    uni.setStorageSync('driverInfo', JSON.stringify(driverInfo));
-					   
 					   uni.switchTab({
 					   	url:'/pages/index/index'
 					   })
+				   }else{
+					   this.errorMsg = res.msg
 				   }
-				   
 				}).catch(res => {
-					this.errorMsg = '登录失败，帐户或密码错误'
+					
+					this.errorMsg = '登录错误 请稍后重试...'
 				　　// 失败进行的操作
 				})
 		

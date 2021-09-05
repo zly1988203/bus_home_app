@@ -51,15 +51,7 @@
 				"navigationBarTitleText": "个人中心"
 			}
 		},
-		{
-			"path": "components/order-item/order-item",
-			"style": {
-				"navigationBarTitleText": "",
-				"enablePullDownRefresh": false
-			}
-
-		}
-        ,{
+        {
             "path" : "pages/userInfo/userInfo",
             "style" :                                                                                    
             {
